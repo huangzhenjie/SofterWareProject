@@ -28,6 +28,22 @@
             android:name=".DoorActivity"
             android:label="@string/title_activity_door" >
         </activity>
+        <activity
+            android:name=".maininterface.MainTabActivity"
+            android:label="@string/title_activity_main_tab" >
+        </activity>
+        <activity
+            android:name=".maininterface.MainTabNews"
+            android:label="@string/title_activity_main_tab_news" >
+        </activity>
+        <activity
+            android:name=".maininterface.MainTabContact"
+            android:label="@string/title_activity_main_tab_contact" >
+        </activity>
+        <activity
+            android:name=".maininterface.MainTabDynamic"
+            android:label="@string/title_activity_main_tab_dynamic" >
+        </activity>
     </application>
 
 </manifest>

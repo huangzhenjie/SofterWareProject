@@ -14,6 +14,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import huangzhengjie.softerwareproject.maininterface.MainTabActivity;
+
 
 public class DoorActivity extends ActionBarActivity {
     private ImageView iVLeft;
@@ -57,11 +59,11 @@ public class DoorActivity extends ActionBarActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(DoorActivity.this, PagerActivity.class);
+                Intent intent = new Intent(DoorActivity.this, MainTabActivity.class);
                 startActivity(intent);
                 DoorActivity.this.finish();
             }
-        }, 2000);
+        }, 1500);
 
 
     }
