@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SofterWareProject</string>
+    <string name="app_name">jianyiqq</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,4 +10,11 @@
     <string name="title_activity_main_tab_news">MainTabNews</string>
     <string name="title_activity_main_tab_contact">MainTabContact</string>
     <string name="title_activity_main_tab_dynamic">MainTabDynamic</string>
+    <string name="title_activity_main_tab_news_message">MainTabNewsMessage</string>
+    <string name="title_activity_smsmain">SMSMainActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_choose_msg">ChooseMsgActivity</string>
+    <string name="title_activity_send_msg">SendMsgActivity</string>
 </resources>
