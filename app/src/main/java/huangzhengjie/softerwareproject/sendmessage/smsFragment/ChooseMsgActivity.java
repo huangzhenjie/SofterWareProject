@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import huangzhengjie.softerwareproject.R;
+import huangzhengjie.softerwareproject.sendmessage.SendMsgActivity;
 import huangzhengjie.softerwareproject.sendmessage.bean.FestivalLab;
 import huangzhengjie.softerwareproject.sendmessage.bean.Msg;
 
@@ -54,7 +55,7 @@ public class ChooseMsgActivity extends AppCompatActivity {
         mFabToSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                SendMsgActivity.toActivity(ChooseMsgActivity.this,mFestivalId,-1);
             }
         });
     }
@@ -67,7 +68,7 @@ public class ChooseMsgActivity extends AppCompatActivity {
 
         mLvMsgs.setAdapter(adapter=new ArrayAdapter<Msg>(this,-1,FestivalLab.getInstance().getMsgByFestivalId(mFestivalId)){
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(final int position, View convertView, ViewGroup parent) {
                 if(convertView==null)
                 {
                     convertView=mInflater.inflate(R.layout.item_msg,parent,false);
@@ -79,7 +80,7 @@ public class ChooseMsgActivity extends AppCompatActivity {
                 toSend.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO
+                        SendMsgActivity.toActivity(ChooseMsgActivity.this,mFestivalId,getItem(position).getId());
                     }
                 });
                 return convertView;
