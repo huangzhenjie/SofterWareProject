@@ -4,22 +4,22 @@
     android:layout_height="match_parent"
     android:id="@android:id/tabhost"
     tools:context="huangzhengjie.softerwareproject.maininterface.MainTabActivity">
-    <RelativeLayout
 
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent">
+        </FrameLayout>
 
         <TabWidget
             android:layout_alignParentBottom="true"
-            android:background="#F7F7F7"
+            android:background="#B0E2FF"
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></TabWidget>
+            android:layout_height="wrap_content">
+        </TabWidget>
     </RelativeLayout>
-
-
 </TabHost>

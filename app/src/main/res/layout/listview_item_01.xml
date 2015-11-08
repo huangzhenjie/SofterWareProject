@@ -11,7 +11,16 @@
     <!--android:id="@+id/textViewName" />-->
 
     <TextView
+        android:paddingTop="20dp"
         android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewName"
+        android:textSize="10dp"
+
+         />
+    <TextView
+        android:layout_toLeftOf="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/duihua_02"

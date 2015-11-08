@@ -1,5 +1,7 @@
 package huangzhengjie.softerwareproject.maininterface;
 
+
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,14 +14,18 @@ import android.widget.ListView;
 import huangzhengjie.softerwareproject.R;
 import huangzhengjie.softerwareproject.http.HttpContactDownloader;
 
-public class MainTabNews extends ActionBarActivity {
+public class MainTabNews extends Activity {
 
     private ListView listView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tab_news);
+
         listView= (ListView) findViewById(R.id.lV_News);
+
         HttpContactDownloader httpContactDownloader=new HttpContactDownloader(listView,this);
         httpContactDownloader.execute();
 
@@ -31,9 +37,5 @@ public class MainTabNews extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
-
     }
-
-
 }

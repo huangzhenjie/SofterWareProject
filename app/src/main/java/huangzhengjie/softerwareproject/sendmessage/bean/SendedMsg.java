@@ -33,8 +33,8 @@ public class SendedMsg
             this.id = id;
         }
 
-        public String getDateStr() {
-
+        public String getDateStr()
+        {
             dateStr=df.format(date);
             return dateStr;
         }

@@ -4,17 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-
-        <!--android:id="@+id/textViewName" />-->
-
     <TextView
-
+        android:paddingTop="20dp"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:background="@drawable/duihua_01"
+        android:id="@+id/textViewName"
+        android:textSize="10dp"
+
+        />
+
+    <TextView
+        android:layout_toRightOf="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/duihua_01"
         android:id="@+id/textViewContent" />
 </RelativeLayout>

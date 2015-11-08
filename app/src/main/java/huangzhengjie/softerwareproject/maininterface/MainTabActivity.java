@@ -7,24 +7,35 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TabHost;
 
+import huangzhengjie.softerwareproject.DoorActivity;
 import huangzhengjie.softerwareproject.R;
+import huangzhengjie.softerwareproject.sendmessage.SMSMainActivity;
 
+//主界面的选项卡页面
 public class MainTabActivity extends TabActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_tab);
+        setContentView(R.layout.main_activity);
 
+        //定义一个tabhosts类，这个类是用来操作我们的tabactivity
         TabHost tabHostNews=getTabHost();
+
         Intent intentNews=new Intent();
         intentNews.setClass(this,MainTabNews.class);
+
+        //表示这个对象的一页
         TabHost.TabSpec tabSpecNews=tabHostNews.newTabSpec("消息");
-        Resources resourcesNews=getResources();
-        tabSpecNews.setIndicator("消息",resourcesNews.getDrawable(R.drawable.actionbar_icon));
+
+        Resources resources=getResources();
+        tabSpecNews.setIndicator("消息",resources.getDrawable(R.drawable.actionbar_icon));
+        //加载我们的内容，内容在intent里面
         tabSpecNews.setContent(intentNews);
+        //添加到tabhost里面去
         tabHostNews.addTab(tabSpecNews);
 
         TabHost tabHostContact=getTabHost();
@@ -47,4 +58,10 @@ public class MainTabActivity extends TabActivity {
     }
 
 
+    //btn按钮跳转到SMSMainActivity
+    public void smsfestival(View v) {
+        Intent intent = new Intent(MainTabActivity.this,SMSMainActivity.class);
+        startActivity(intent);
+        //this.finish();
+    }
 }

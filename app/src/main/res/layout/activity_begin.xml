@@ -2,21 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome_bg"
+
     tools:context="huangzhengjie.softerwareproject.BeginActivity">
 
 
-    <ImageView
-        android:src="@drawable/welcome_earth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.loopj.android.image.SmartImageView
+        android:src="@drawable/welcome01"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/beginiV" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/beginpB"
         android:layout_below="@+id/beginiV"
         android:layout_centerHorizontal="true"

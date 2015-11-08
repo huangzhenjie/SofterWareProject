@@ -17,49 +17,60 @@ import huangzhengjie.softerwareproject.userinformation.UserIM;
 /**
  * Created by asd13_000 on 2015/10/12.
  */
-public class MyAdapter extends BaseAdapter{
+public class MyAdapter extends BaseAdapter
+{
     private Context context;
     private List<UserIM.UserI> userIList;
 
-    public  MyAdapter(Context context,List<UserIM.UserI> userIList){
+    public  MyAdapter(Context context,List<UserIM.UserI> userIList)
+    {
         this.context=context;
         this.userIList=userIList;
     }
 
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return userIList.size();
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem(int position)
+    {
         return null;
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return 0;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
 
         View view;
         if(convertView!=null){
             view=convertView;
-        }else {
-            view=View.inflate(context, R.layout.listview_adapter_tab_news,null);
-
         }
+        else
+        {
+            view=View.inflate(context, R.layout.listview_adapter_tab_news,null);
+        }
+
         SmartImageView smartImageView= (SmartImageView) view.findViewById(R.id.SIV);
         TextView name= (TextView) view.findViewById(R.id.TV_Name);
         TextView signature= (TextView) view.findViewById(R.id.TV_Signature);
 
         UserIM.UserI user=userIList.get(position);
+        //1.请求的URL地址，2.显示请求失败的图片，3.正在请求的图片
         smartImageView.setImageUrl(user.getHead(),R.drawable.image1,R.drawable.touxiang);
         Log.d("main", "" + user.getHead());
+
         name.setText(user.getName());
         Log.d("main", "" + user.getName());
+
         signature.setText(user.getSignature());
         Log.d("main", "" + user.getSignature());
         return  view;

@@ -30,6 +30,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 
 import huangzhengjie.softerwareproject.R;
+import huangzhengjie.softerwareproject.sendmessage.smsFragment.FestivalCategoryFragment;
 
 public class MainTabNewsMessage extends Activity {
 //    private EditText ed_Text;
@@ -39,8 +40,9 @@ public class MainTabNewsMessage extends Activity {
      private  Button sendButton;
      private  EditText inputContentEditText;
      private  EMConversation conversation;
-    private String toChatUsername="huangzhenjie";
-    private DataAdapter adapter;
+     private String toChatUsername="huangzhenjie";
+     //private String toChatUsername;
+     private DataAdapter adapter;
 
 
     @Override
@@ -54,39 +56,35 @@ public class MainTabNewsMessage extends Activity {
 
 
 
+
                 EMChatManager.getInstance().getChatOptions().setShowNotificationInBackgroud(false);
 
 
-        EMChatManager.getInstance().login("huangzhenjie12", "123456", new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                EMGroupManager.getInstance().loadAllGroups();
-                EMChatManager.getInstance().loadAllConversations();
-                Log.d("main", "登陆聊天服务器成功");
-
-                EMChat.getInstance().setAppInited();
-            }
-
-            @Override
-            public void onError(int i, String s) {
-
-                Log.d("main", "登陆聊天服务器失败");
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-
-            }
-        });
-
-
-
-
-
-
-
-conversation=EMChatManager.getInstance().getConversation(toChatUsername);
- adapter=new DataAdapter();
+//        EMChatManager.getInstance().login("huangzhenjie12", "123456", new EMCallBack() {
+//            @Override
+//            public void onSuccess() {
+//                EMGroupManager.getInstance().loadAllGroups();
+//                EMChatManager.getInstance().loadAllConversations();
+//                Log.d("main", "登陆聊天服务器成功");
+//
+//                EMChat.getInstance().setAppInited();
+//            }
+//
+//            @Override
+//            public void onError(int i, String s) {
+//
+//                Log.d("main", "登陆聊天服务器失败");
+//            }
+//
+//            @Override
+//            public void onProgress(int i, String s) {
+//
+//            }
+//        });
+//        Intent intent = getIntent();
+//        toChatUsername = intent.getStringExtra("username");
+        conversation=EMChatManager.getInstance().getConversation(toChatUsername);
+        adapter=new DataAdapter();
         listView.setAdapter(adapter);
 
 
@@ -109,6 +107,8 @@ conversation=EMChatManager.getInstance().getConversation(toChatUsername);
 //如果是群聊，设置chattype,默认是单聊
 //                message.setChatType(EMMessage.ChatType.GroupChat);
 //设置消息body
+
+                //内容
                 TextMessageBody txtBody = new TextMessageBody(inputContentEditText.getText().toString());
                 message.addBody(txtBody);
 //设置接收人
@@ -148,26 +148,6 @@ conversation=EMChatManager.getInstance().getConversation(toChatUsername);
                 });
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -264,6 +244,7 @@ conversation=EMChatManager.getInstance().getConversation(toChatUsername);
                 // 消息不是发给当前会话，return
                 return;
             }
+            //刷新listview
             conversation.addMessage(message);
             adapter.notifyDataSetChanged();
             listView.setAdapter(adapter);
@@ -274,47 +255,54 @@ conversation=EMChatManager.getInstance().getConversation(toChatUsername);
 
 
 
+    private class DataAdapter extends BaseAdapter
+    {
 
-
-
-
-    private class DataAdapter extends BaseAdapter{
-    TextView textViewName;
+        TextView textViewName;
     @Override
-    public int getCount() {
-        return conversation.getAllMessages().size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return conversation.getAllMessages().get(position);
-    }
+    public int getCount()
+        {
+            return conversation.getAllMessages().size();
+        }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public Object getItem(int position)
+        {
+            return conversation.getAllMessages().get(position);
+        }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public long getItemId(int position)
+        {
+            return position;
+        }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+        {
         EMMessage message=conversation.getAllMessages().get(position);
         TextMessageBody body= (TextMessageBody) message.getBody();
-        if(message.direct==EMMessage.Direct.RECEIVE){
-            if(message.getType()==EMMessage.Type.TXT){
-                convertView= LayoutInflater.from(MainTabNewsMessage.this).inflate(R.layout.listview_item_01,null);
-//                textViewName= (TextView) convertView.findViewById(R.id.textViewName);
-//                textViewName.setText(message.getFrom());
-            }
-        }else{
-            if (message.getType()==EMMessage.Type.TXT){
+        if(message.direct==EMMessage.Direct.RECEIVE)
+            {
+            if(message.getType()==EMMessage.Type.TXT)
+                {
                 convertView= LayoutInflater.from(MainTabNewsMessage.this).inflate(R.layout.listview_item,null);
+                textViewName= (TextView) convertView.findViewById(R.id.textViewName);
+                textViewName.setText(message.getFrom());
+                }
             }
-        }
-        TextView textViewContent= (TextView) convertView.findViewById(R.id.textViewContent);
+        else
+            {
+            if (message.getType()==EMMessage.Type.TXT)
+                {
+                convertView= LayoutInflater.from(MainTabNewsMessage.this).inflate(R.layout.listview_item_01,null);
+                }
+            }
+
+            TextView textViewContent= (TextView) convertView.findViewById(R.id.textViewContent);
         textViewContent.setText(body.getMessage());
         return convertView;
 }
 }
-
 
 }

@@ -7,30 +7,31 @@
     android:orientation="vertical"
     tools:context="huangzhengjie.softerwareproject.maininterface.MainTabNews">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:background="#ff59f2ff"
+            android:layout_height="85dp"
+            android:background="@drawable/radius_bg"
             android:id="@+id/tV_News" />
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/touxiang"
+            android:src="@drawable/touxiang_01"
             android:layout_marginLeft="10dp"
             android:id="@+id/iV_News" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:background="@drawable/blue_button"
+            android:layout_width="100sp"
+            android:layout_height="45dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
             android:text="设置"
             android:id="@+id/btn_News" />
@@ -42,7 +43,6 @@
         android:background="#DBDBDB">
 
         <EditText
-
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"

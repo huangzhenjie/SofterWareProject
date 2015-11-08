@@ -11,31 +11,40 @@ public class UserIM {
 
     public static class UserI
     {
+        //头像
         private String head;
+        //名字
         private String name;
+        //签名
         private String signature;
 
-        public String getHead() {
+        public String getHead()
+        {
             return head;
         }
 
-        public void setHead(String head) {
+        public void setHead(String head)
+        {
             this.head = head;
         }
 
-        public String getName() {
+        public String getName()
+        {
             return name;
         }
 
-        public void setName(String name) {
+        public void setName(String name)
+        {
             this.name = name;
         }
 
-        public String getSignature() {
+        public String getSignature()
+        {
             return signature;
         }
 
-        public void setSignature(String signature) {
+        public void setSignature(String signature)
+        {
             this.signature = signature;
         }
 

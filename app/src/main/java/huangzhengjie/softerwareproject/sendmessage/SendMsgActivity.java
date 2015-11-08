@@ -29,6 +29,7 @@ import huangzhengjie.softerwareproject.R;
 import huangzhengjie.softerwareproject.sendmessage.bean.Festival;
 import huangzhengjie.softerwareproject.sendmessage.bean.FestivalLab;
 import huangzhengjie.softerwareproject.sendmessage.bean.Msg;
+import huangzhengjie.softerwareproject.sendmessage.bean.SendedMsg;
 import huangzhengjie.softerwareproject.sendmessage.biz.SmsBiz;
 import huangzhengjie.softerwareproject.sendmessage.view.FlowLayout;
 
@@ -64,7 +65,7 @@ public class SendMsgActivity extends AppCompatActivity {
     private BroadcastReceiver mSendBroadcastReceiver;
     private BroadcastReceiver mDeliverBroadcastReceiver;
 
-    private SmsBiz smsBiz=new SmsBiz();
+    private SmsBiz smsBiz;
 
     private int mMsgSendCount;
     private int mTotalCount;
@@ -75,6 +76,8 @@ public class SendMsgActivity extends AppCompatActivity {
         setContentView(R.layout.activity_send_msg);
 
         mInflater=LayoutInflater.from(this);
+ //       smsBiz=new SmsBiz(this);
+        smsBiz=new SmsBiz();
         initDatas();
 
         initViews();
@@ -96,16 +99,14 @@ public class SendMsgActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 mMsgSendCount++;
-                if (getResultCode() == RESULT_OK)
-                {
+                if (getResultCode() == RESULT_OK) {
                     Log.e("TAG", "短信发送成功" + (mMsgSendCount + "/" + mTotalCount));
 
-                } else
-                {
+                } else {
                     Log.e("TAG", "短信发送失败");
                 }
 
-                Toast.makeText(SendMsgActivity.this,(mMsgSendCount + "/" + mTotalCount)+"短信发送成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SendMsgActivity.this, (mMsgSendCount + "/" + mTotalCount) + "短信发送成功", Toast.LENGTH_SHORT).show();
 
                 if (mMsgSendCount == mTotalCount) {
                     finish();
@@ -144,25 +145,45 @@ public class SendMsgActivity extends AppCompatActivity {
         mFabSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mContactNums.size()==0)
-                {
-                    Toast.makeText(SendMsgActivity.this,"请选择联系人", Toast.LENGTH_SHORT).show();
-                return;
-                 }
-                String msg=mEdMsg.getText().toString();
-                if(TextUtils.isEmpty(msg))
-                {
-                    Toast.makeText(SendMsgActivity.this,"短信内容不能为空", Toast.LENGTH_SHORT).show();
+                if (mContactNums.size() == 0) {
+                    Toast.makeText(SendMsgActivity.this, "请选择联系人", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String msg = mEdMsg.getText().toString();
+                if (TextUtils.isEmpty(msg)) {
+                    Toast.makeText(SendMsgActivity.this, "短信内容不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mLayoutLoading.setVisibility(View.VISIBLE);
-                mTotalCount=smsBiz.sendMsg(mContactNums,msg,mSendPi,mDeliverPi);
-                mMsgSendCount=0;
+               // mTotalCount = smsBiz.sendMsg(mContactNums, buildSendMSg(msg), mSendPi, mDeliverPi);
+               mTotalCount = smsBiz.sendMsg(mContactNums, msg, mSendPi, mDeliverPi);
+                mMsgSendCount = 0;
 
             }
         });
 
 }
+
+//    private SendedMsg buildSendMSg(String msg)
+//    {
+//        SendedMsg sendedMsg=new SendedMsg();
+//        sendedMsg.setMsg(msg);
+//        sendedMsg.setFestivalName("国庆节");
+//        String names="a";
+//        for(String name:mContactNames)
+//        {
+//            names+=name+":";
+//        }
+//        String numbers="a";
+//        for(String number:mContactNums)
+//        {
+//            numbers+=number+":";
+//        }
+//        sendedMsg.setNames(names);
+//        sendedMsg.setNumbers(numbers);
+//        return sendedMsg;
+//    }
+
     private void initViews() {
         mEdMsg= (EditText) findViewById(R.id.id_et_content);
         mBtnAdd= (Button) findViewById(R.id.id_btn_add);
